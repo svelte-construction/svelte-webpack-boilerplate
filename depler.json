@@ -1,0 +1,19 @@
+{
+  "commands": {
+    "build": {
+      "image": {
+        "build-arg": [
+          "SSH_PRIVATE_KEY=\"${SSH_PRIVATE_KEY}\"",
+          "STAGE=\"${DEPLOY_STAGE}\""
+        ]
+      }
+    },
+    "run": {
+      "container": {
+        "restart": "unless-stopped",
+        "publish": "8000:80",
+        "rm": false
+      }
+    }
+  }
+}

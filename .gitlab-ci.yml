@@ -1,0 +1,66 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - rollout
+
+variables:
+  # docker image settings
+  DOCKER_DRIVER: overlay
+
+  # deploy settings
+  DEPLOY_HOST: ''
+  DEPLOY_USER: ''
+  DEPLOY_APP: ''
+  DEPLOY_STRATEGY: 'image'
+  DEPLOY_STAGE: 'troposphere'
+
+  # deploy ssh keys
+  SSH_PRIVATE_KEY: ''
+
+.rollout: &rollout
+  script:
+    # [prepare]
+    # install dependencies for deployment scenario
+    - apk add --update bash openssh git rsync nodejs nodejs-npm
+    - npm i -g depler
+
+    # configure ssh tool and run it with passed ssh key
+    - mkdir -p ~/.ssh && echo "Host *" > ~/.ssh/config && echo " StrictHostKeyChecking no" >> ~/.ssh/config
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+
+    # [deploy]
+    # use depler tool to build, transfer and run the container
+    - depler deploy --code $DEPLOY_APP --host $DEPLOY_USER@$DEPLOY_HOST --as $DEPLOY_STRATEGY --config depler.json .
+
+before_script:
+  # echo some variables
+  - echo $DEPLOY_HOST
+  - echo $DEPLOY_USER
+  - echo $DEPLOY_APP
+  - echo $DEPLOY_STRATEGY
+  - echo $DEPLOY_STAGE
+
+rollout:production:
+  <<: *rollout
+  stage: rollout
+  when: manual
+  allow_failure: true
+  environment:
+    name: production
+    url: https://path-to-your-production.io
+  only:
+    - master
+
+rollout:staging:
+  <<: *rollout
+  stage: rollout
+  when: manual
+  allow_failure: true
+  environment:
+    name: staging
+    url: https://path-to-your-staging.io
+  except:
+    - master
