@@ -17,7 +17,7 @@ This is svelte webpack boilerplate. We support the following features:
   - [Eslint](https://github.com/eslint/eslint) v6.1.0.
   - [Stylelint](https://github.com/stylelint/stylelint) v10.1.0.
 - **Features**
-- Edge browser support.
+  - Edge browser support.
 
 
 ## How it looks like?
