@@ -20,7 +20,7 @@ This is svelte webpack boilerplate. We support the following features:
   - Edge browser support.
 
 
-## How it looks like?
+## What does it look like?
 Demo site has only two pages with navigation between them. [Take a look at youtube demo](https://youtu.be/QucmQwbQajc).
 
 ![demo](docs/screenshot.png)
