@@ -13,9 +13,11 @@ This is svelte webpack boilerplate. We support the following features:
 - - ✅ [Depler](https://github.com/gustarus/depler) (docker deployment tool) v1.7.8.
 - - ✅ [Gitlab-CI](https://docs.gitlab.com/ee/ci/).
 - **Code style tools**
-- - ✅ [Prettier](https://github.com/prettier/prettier) ?.
+- - ✅ [Prettier](https://github.com/prettier/prettier).
 - - ✅ [Eslint](https://github.com/eslint/eslint) v6.1.0.
 - - ✅ [Stylelint](https://github.com/stylelint/stylelint) v10.1.0.
+- **Features**
+- - ✅ Edge browser support.
 
 
 ## How it looks like?
