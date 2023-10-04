@@ -51,7 +51,7 @@
     "html-webpack-plugin": "3.2.0",
     "markdown-loader": "5.1.0",
     "mini-css-extract-plugin": "0.7.0",
-    "postcss": "7.0.18",
+    "postcss": "8.4.31",
     "postcss-automath": "1.0.1",
     "postcss-color-mod-function": "3.0.3",
     "postcss-each": "0.10.0",
